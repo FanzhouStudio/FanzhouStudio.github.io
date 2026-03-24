@@ -10,59 +10,80 @@
             font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
             background-color: #050505; color: #ffffff;
             display: flex; justify-content: center; align-items: center;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
-        /* 动态流动背景 */
+        /* 顶部导航栏 */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 20px 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            box-sizing: border-box; z-index: 100;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+        }
+        .nav-logo { font-size: 1.2rem; letter-spacing: 2px; font-weight: 300; }
+        .nav-links a {
+            color: #aaa; text-decoration: none; margin-left: 30px;
+            font-size: 0.9rem; transition: 0.3s; letter-spacing: 1px;
+        }
+        .nav-links a:hover { color: #fff; }
+
+        /* 动态背景 */
         .bg-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at center, #111 0%, #050505 100%);
             z-index: -1;
         }
-
         .smoke {
             position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: radial-gradient(circle at center, rgba(255,255,255,0.03) 0%, transparent 60%);
-            animation: moveSmoke 25s linear infinite;
-            filter: blur(60px);
+            animation: moveSmoke 25s linear infinite; filter: blur(60px);
         }
-
         @keyframes moveSmoke {
             0% { transform: translate(0, 0) rotate(0deg); }
             50% { transform: translate(-5%, -10%) rotate(180deg); }
             100% { transform: translate(0, 0) rotate(360deg); }
         }
 
-        /* 内容布局 */
-        .container {
-            text-align: center; max-width: 700px; padding: 20px;
-            opacity: 0; transform: translateY(20px);
-            animation: fadeIn 1.5s ease-out forwards;
-        }
-
-        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
-
-        h1 { font-size: 2.8rem; letter-spacing: 10px; margin-bottom: 5px; font-weight: 300; }
-        .quote { font-style: italic; color: #eee; margin-bottom: 30px; letter-spacing: 2px; opacity: 0.8; }
-        .line { width: 40px; height: 1px; background: #444; margin: 20px auto; }
+        /* 主内容 */
+        .container { text-align: center; max-width: 800px; padding: 20px; z-index: 10; }
+        h1 { font-size: 3rem; letter-spacing: 12px; margin-bottom: 10px; font-weight: 300; }
+        .quote { font-style: italic; color: #eee; margin-bottom: 30px; letter-spacing: 3px; opacity: 0.8; }
         
         .intro { 
             text-align: left; line-height: 2; color: #999; font-size: 0.95rem; 
-            margin-bottom: 40px; background: rgba(255,255,255,0.02);
-            padding: 20px; border-radius: 4px;
+            margin: 30px auto; background: rgba(255,255,255,0.02);
+            padding: 25px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05);
         }
-        
-        strong { color: #ddd; font-weight: 400; }
 
+        /* 按钮组 */
+        .btn-group { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
         .btn {
-            display: inline-block; padding: 12px 35px; border: 1px solid #fff;
-            color: #fff; text-decoration: none; font-size: 0.9rem;
+            display: inline-block; padding: 12px 30px; border: 1px solid #fff;
+            color: #fff; text-decoration: none; font-size: 0.85rem;
             transition: all 0.3s; cursor: pointer; letter-spacing: 2px;
+            min-width: 160px; box-sizing: border-box;
         }
-        .btn:hover { background: #fff; color: #000; box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+        .btn:hover { background: #fff; color: #000; box-shadow: 0 0 20px rgba(255,255,255,0.1); }
+        .btn.secondary { background: #fff; color: #000; }
+        .btn.secondary:hover { background: transparent; color: #fff; }
+
+        @media (max-width: 600px) {
+            nav { padding: 20px; }
+            .nav-links { display: none; } /* 手机端隐藏导航，保持简洁 */
+            h1 { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
+    <nav>
+        <div class="nav-logo">Fanzhou Studio</div>
+        <div class="nav-links">
+            <a href="#">首页</a>
+            <a href="#">开发日志</a>
+            <a href="#">关于我们</a>
+        </div>
+    </nav>
+
     <div class="bg-container">
         <div class="smoke"></div>
     </div>
@@ -71,16 +92,18 @@
         <h1>泛舟工作室</h1>
         <p class="quote">“志在以游为舟，载山海入梦”</p>
         
-        <div class="line"></div>
-        
         <div class="intro">
-            我们是一群热爱中式奇幻文化的开发者，目前正全力投入于<strong>写实风格《山海经》主题开放世界 ARPG</strong> 的研发。<br><br>
-            在大作打磨期间，我们会不定期分享一些轻量级、富有趣味性的闯关小品，作为技术尝试与灵感碰撞的产物。期待与你一同见证山海世界的诞生。
+            我们是一群热爱中式奇幻文化的开发者，目前正全力投入于<strong>写实风格《山海经》主题开放世界 ARPG</strong> 的研发。期待与你一同见证山海世界的诞生。
         </div>
 
-        <a href="https://www.taptap.cn/developer/280143" class="btn" target="_blank">
-            前往 TapTap 见证山海
-        </a>
+        <div class="btn-group">
+            <a href="https://www.taptap.cn/developer/280143" class="btn secondary" target="_blank">
+                TapTap 见证山海
+            </a>
+            <a href="https://qm.qq.com/q/MhVnheWWoo" class="btn" target="_blank">
+                加入官方 QQ 群
+            </a>
+        </div>
     </div>
 </body>
 </html>
