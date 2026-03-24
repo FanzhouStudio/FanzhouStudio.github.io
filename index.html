@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泛舟工作室 | Fanzhou Studio</title>
+    <style>
+        /* 样式重置与核心布局 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: #0a0a0a; /* 极简黑 */
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* 渐入动画 */
+        .container {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 文字样式 */
+        h1 {
+            font-size: 3rem;
+            letter-spacing: 8px;
+            margin-bottom: 10px;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #888;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+
+        /* 装饰线 */
+        .line {
+            width: 50px;
+            height: 1px;
+            background-color: #444;
+            margin: 20px auto;
+        }
+
+        /* 按钮样式 */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid #ffffff;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* 背景装饰微动效 */
+        .bg-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 70%);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <div class="container">
+        <h1>泛舟工作室</h1>
+        <p>FANZHOU STUDIO</p>
+        
+        <div class="line"></div>
+        
+        <p style="font-size: 0.9rem; color: #666;">
+            专注独立游戏开发 · 探索未知边界
+        </p>
+
+        <a href="https://www.taptap.cn/developer/280143" class="btn" target="_blank">
+            前往 TapTap 关注我们
+        </a>
+    </div>
+
+</body>
+</html>
